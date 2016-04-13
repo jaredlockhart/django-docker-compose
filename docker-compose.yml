@@ -1,0 +1,32 @@
+app:
+  build: ./app
+  env_file: .env
+  expose:
+    - "7001"
+  links:
+    - postgres
+  volumes:
+    - ./app:/app
+  command: python /app/manage.py runserver 0:7001 
+
+nginx:
+  build: ./nginx
+  links:
+    - app
+  ports:
+    - "80:80"
+
+postgres:
+  restart: always
+  image: postgres:latest
+  volumes_from:
+    - data
+  ports:
+    - "5432:5432"
+
+data:
+  restart: always
+  image: busybox 
+  volumes:
+    - /var/lib/postgresql
+  command: "true"
