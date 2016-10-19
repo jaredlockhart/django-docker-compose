@@ -1,14 +1,23 @@
 build: 
+	./scripts/build.sh
+
+compose_build: build
 	docker-compose build
 
-up: build
+up: compose_build
 	docker-compose up
 
-test: build
-	docker-compose run app sh -c "pip install coverage flake8 && flake8 . && python /app/manage.py test"
+test: compose_build
+	docker-compose run app python /app/manage.py test
 
-migrate: build
+lint: compose_build
+	docker-compose run app flake8 .
+
+check: compose_build lint test
+	echo "Success"
+
+migrate: compose_build
 	docker-compose run app python manage.py migrate
 
-shell: build
+shell: compose_build
 	docker-compose run app python manage.py shell 

@@ -1,5 +1,5 @@
 app:
-  build: ./app
+  image: app:dev 
   env_file: .env
   expose:
     - "7001"
