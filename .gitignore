@@ -63,3 +63,5 @@ target/
 
 # Environment file
 .env
+
+version.json
