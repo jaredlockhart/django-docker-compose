@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from project.views import CounterView
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'', CounterView.as_view(), name='counter'),
 ]

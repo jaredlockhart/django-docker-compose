@@ -5,7 +5,7 @@ compose_build: build
 	docker-compose build
 
 up: compose_build
-	docker-compose up
+	docker-compose up -d;docker attach djangodockercompose_app_1
 
 test: compose_build
 	docker-compose run app python /app/manage.py test

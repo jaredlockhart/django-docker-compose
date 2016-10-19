@@ -1,6 +1,8 @@
 app:
   image: app:dev 
   env_file: .env
+  stdin_open: true
+  tty: true
   expose:
     - "7001"
   links:
