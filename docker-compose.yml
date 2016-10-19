@@ -25,7 +25,6 @@ postgres:
     - "5432:5432"
 
 data:
-  restart: always
   image: busybox 
   volumes:
     - /var/lib/postgresql
